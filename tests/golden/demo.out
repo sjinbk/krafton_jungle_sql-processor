@@ -1,0 +1,22 @@
+-- Statement 1: INSERT INTO users (id, name, age) VALUES (3, 'kim', 25),...
+INSERT OK (2 rows)
+-- Statement 2: SELECT * FROM users
++----+-------+-----+
+| id | name  | age |
++----+-------+-----+
+| 1  | alice | 31  |
+| 2  | bob   | 24  |
+| 3  | kim   | 25  |
+| 4  | lee   | 29  |
++----+-------+-----+
+(4 rows)
+-- Statement 3: SELECT id, name FROM public.users
++----+-------+
+| id | name  |
++----+-------+
+| 1  | alice |
+| 2  | bob   |
+| 3  | kim   |
+| 4  | lee   |
++----+-------+
+(4 rows)

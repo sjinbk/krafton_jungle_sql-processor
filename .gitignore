@@ -1,0 +1,9 @@
+sqlproc
+sqlproc_tests
+*.o
+*.obj
+*.exe
+*.actual
+.tmp/
+tmp/
+
