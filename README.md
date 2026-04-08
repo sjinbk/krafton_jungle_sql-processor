@@ -1,7 +1,15 @@
 # SQL-Parser
 사용자가 SQL 파일을 넣으면, 문장별로 나누고, 토큰으로 쪼개고, AST라는 구조로 해석하여, csv파일에 INSERT와 SELECT를 수행한다.
 
-(플로우 이미지)
+```mermaid
+flowchart TD
+    A[<b>main.c</b><br/>전체 오케스트레이션] --> B[<b>input.c</b><br/>SQL 파일 읽기 + statement 분리]
+    B --> C[<b>tokenizer.c</b><br/>문자열을 토큰으로 자르기]
+    C --> D[<b>parser.c</b><br/>토큰을 AST로 바꾸기]
+    D --> E[<b>executor.c</b><br/>AST 실행]
+    E --> F[<b>schema.c</b><br/>테이블 구조 정보 읽기]
+    E --> G[<b>storage.c</b><br/>실제 CSV 파일 입출력]
+```
 
 ```Text
 SQL 파일
