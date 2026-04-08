@@ -180,7 +180,7 @@ static void test_statement_header_truncates_long_sql(void) {
     rewind(tmp);
     read_size = fread(buffer, 1, sizeof(buffer) - 1, tmp);
     buffer[read_size] = '\0';
-    ASSERT_EQ_STR(buffer, "-- Statement 1: INSERT INTO users (id, name, age) VALUES (1, 'alice', ...\n");
+    ASSERT_EQ_STR(buffer, "-- Statement 1: INSERT INTO users (id, name, age) VALUES (1, 'alice', 31)...\n");
     fclose(tmp);
 }
 
