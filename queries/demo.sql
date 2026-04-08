@@ -5,4 +5,4 @@
 -- 3) SELECT id, name 으로 더 작은 projection을 읽는다.
 INSERT INTO users (id, name, age) VALUES (3, 'kim', 25), (4, 'lee', 29);
 SELECT * FROM users;
-SELECT id, name FROM public.users;
+SELECT id, name FROM users;

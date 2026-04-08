@@ -349,6 +349,38 @@ static void test_parser_error(void) {
     ASSERT_EQ_STR(error.message, "expected projection list or '*'");
 }
 
+/* execute_statement가 temp DB CSV에 row를 append하고 reload 이후에도 값이 유지되는지 확인한다. */
+static void test_executor_insert_persists_to_csv(void) {
+    char db_root[256];
+    Statement statement;
+    TableSchema schema;
+    DataSet data_set;
+    Error error;
+    FILE *tmp;
+
+    ASSERT_TRUE(create_temp_db(db_root, sizeof(db_root)));
+
+    error_clear(&error);
+    ASSERT_TRUE(parse_statement("INSERT INTO users (id, name, age) VALUES (3, 'kim', 25)", 1, 1, &statement, &error));
+    tmp = tmpfile();
+    ASSERT_TRUE(tmp != NULL);
+    ASSERT_TRUE(execute_statement(&statement, db_root, tmp, &error));
+    fclose(tmp);
+    statement_free(&statement);
+
+    error_clear(&error);
+    ASSERT_TRUE(schema_load(db_root, "public", "users", &schema, &error));
+    ASSERT_TRUE(storage_load_rows(db_root, &schema, &data_set, &error));
+    ASSERT_EQ_INT((int)data_set.count, 3);
+    ASSERT_EQ_LONG(data_set.rows[2].values[0].int_value, 3);
+    ASSERT_EQ_STR(data_set.rows[2].values[1].text_value, "kim");
+    ASSERT_EQ_LONG(data_set.rows[2].values[2].int_value, 25);
+
+    data_set_free(&data_set);
+    schema_free(&schema);
+    destroy_temp_db(db_root);
+}
+
 /* AST debug printer도 지원된 디버그 흐름의 일부이므로 출력 형태를 고정해 둔다. */
 static void test_statement_fprint(void) {
     Statement statement;
@@ -385,6 +417,7 @@ int main(void) {
     test_executor_select();
     test_executor_type_mismatch();
     test_parser_error();
+    test_executor_insert_persists_to_csv();
     test_statement_fprint();
 
     if (failures > 0) {
