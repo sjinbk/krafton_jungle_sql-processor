@@ -124,8 +124,8 @@ summary는 statement 원문을 한 줄로 정규화한 식별용 텍스트이며
 발표 준비에서는 이 문서를 "무엇을 지원하는가"를 설명하는 기준으로 사용하고,
 코드 흐름 설명은 `docs/presentation/code-walkthrough.md`와 함께 읽으면 됩니다.
 
-## Persistence Clarification
+## 영구 반영 계약 보강
 
-- `INSERT`는 `--db`로 지정된 database root 아래의 CSV 파일에 row를 직접 append합니다.
+- `INSERT`는 `--db`로 지정된 데이터베이스 루트 아래의 CSV 파일에 row를 직접 append합니다.
 - `--db ./sample_db`로 실행한 경우, 프로세스 종료 후에도 변경사항이 `sample_db/public/*.csv`에 남아 있어야 합니다.
-- `tests/fixtures/sample_db_seed/`는 runtime storage contract의 일부가 아니라 immutable verification fixture입니다. check 단계에서는 이를 복사해서 사용할 수 있지만, 실제 실행은 전달받은 DB 경로에 영구 반영되어야 합니다.
+- `tests/fixtures/sample_db_seed/`는 런타임 storage contract의 일부가 아니라 immutable verification fixture입니다. check 단계에서는 이를 복사해서 사용할 수 있지만, 실제 실행은 전달받은 DB 경로에 영구 반영되어야 합니다.

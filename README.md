@@ -25,15 +25,6 @@ SQL 파일
 
 ---
 
-## Persistence Note
-
-- Running `./sqlproc --db ./sample_db --file ...` persists `INSERT` results to `./sample_db/public/*.csv`.
-- `make demo` now runs against `./sample_db` directly, so repeated runs accumulate rows in `sample_db/public/users.csv`.
-- `make check` still uses disposable copies of `tests/fixtures/sample_db_seed/`, so automated verification does not mutate the immutable seed fixture.
-
-## Demo Reset Tip
-
-- If you want to restore the original demo state, reset `sample_db/public/users.csv` before rerunning `make demo`.
 # 핵심 개념
 ## Tokenizer
 Tokenizer는 SQL 문장을 작은 조각으로 자르는 단계입니다.

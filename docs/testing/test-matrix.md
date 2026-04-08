@@ -53,13 +53,13 @@ make check
 - 같은 변경 안에서 `tests/golden/`의 대응 golden output도 업데이트하거나 추가합니다.
 - 지원 SQL subset이나 output contract가 바뀌면 `docs/spec/mvp.md`도 함께 업데이트합니다.
 
-## Demo Versus Verification
+## 데모와 검증의 구분
 
-- `sample_db/`는 수동 데모와 직접 CLI 실행에 사용하는 persistent example database입니다.
+- `sample_db/`는 수동 데모와 직접 CLI 실행에 사용하는 영구 반영용 예시 데이터베이스입니다.
 - `tests/fixtures/sample_db_seed/`는 disposable copy를 통해서만 사용하는 immutable verification seed입니다.
-- `make demo`는 `sample_db/`를 직접 대상으로 실행하므로 stateful합니다.
+- `make demo`는 `sample_db/`를 직접 대상으로 실행하므로 상태가 남습니다.
 - `make check`는 deterministic해야 하며 `tests/fixtures/sample_db_seed/`를 변경하면 안 됩니다.
 
-## Additional Persistence Coverage
+## 추가 영구 반영 검증
 
 - `test_executor_insert_persists_to_csv`는 `execute_statement()`가 temp DB의 CSV에 append한 row가 fresh reload 이후에도 관찰되는지 검증합니다.
