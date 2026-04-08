@@ -15,7 +15,7 @@ static void print_usage(const char *program_name) {
     fprintf(stderr, "Usage: %s [--emit-ast] --db <db_root> --file <sql_file>\n", program_name);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) { // argc : 몇개의 문자열 인자가 들어왔는가, argv[0]실행한 프로그램 이름 혹은 경로 / [1] 사용자가 실제로 넘긴 옵션
     const char *db_root = NULL;
     const char *sql_file = NULL;
     int emit_ast = 0;
