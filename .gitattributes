@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# Keep repository text files normalized to LF so Windows core.autocrlf
+# settings do not make the whole tree appear rewritten.

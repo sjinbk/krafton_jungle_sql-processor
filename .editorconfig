@@ -1,0 +1,12 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[*.{c,h,md,sql,sh,schema,csv}]
+indent_style = space
+
+[Makefile]
+indent_style = tab
